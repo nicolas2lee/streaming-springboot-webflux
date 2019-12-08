@@ -1,0 +1,10 @@
+---
+applications:
+- instances: 1
+  timeout: 180
+  name: streamingspringbootwebflux
+  buildpack: java_buildpack
+  path: ./target/streaming-springboot-webflux-0.1.0.jar
+  memory: 1024M
+  domain: not-used.net
+  host: not-used
