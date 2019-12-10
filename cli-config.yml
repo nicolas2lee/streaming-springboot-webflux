@@ -48,3 +48,10 @@ chart-path : "chart/streamingspringbootwebflux"
 ibm-generated-id : "9c9b9731-7350-4a5d-9fe1-3deef5c03eb2"
 ibm-cloud-app-id : "4c34ed26-e459-4c55-a317-1e8ace6baf6f"
 credentials-filepath : "src/main/resources/application-local.properties, src/main/resources/localdev-config.json"
+
+
+deploy-target: "container"
+
+deploy-image-target: "us.icr.io/streaming/streamingspringbootwebflux"
+
+ibm-cluster: "streaming"
