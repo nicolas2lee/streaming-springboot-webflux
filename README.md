@@ -22,6 +22,7 @@ Original tech stack:
 * Helm
     * [Official helm doc](https://helm.sh/)
     * [Helm course in ibm](https://www.ibm.com/cloud/garage/content/course/helm-fundamentals/0)
+    * [Adding helm chart in kubernetes](https://cloud.ibm.com/docs/containers?topic=containers-helm)
     
 ## Cloudify your application
 ### General solution
