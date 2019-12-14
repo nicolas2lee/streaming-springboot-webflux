@@ -1,73 +1,50 @@
-## streamingspringbootwebflux
+## Get initial app
+Get initial app from init 
 
-Basic Web project with undefined
+## Auto generation of configuration
+Since it's an existing application, execute below command
+    
+    ibmcloud dev enable
+For new project, using
 
-[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)
-![Platform](https://img.shields.io/badge/platform-SPRING-lightgrey.svg?style=flat)
+    ibmcloud dev create
+## Without customization
 
-### Table of Contents
-* [Requirements](#requirements)
-* [Configuration](#configuration)
-* [Run](#run)
-* [Debug](#debug)
+### build your app
+    ibmcloud dev build (--debug for debug mode)
+### deploy your app
+    ibmcloud deploy --target container
+or add below block into cli-config.yml
+ 
+    deploy-target: "container"
+    deploy-image-target: "us.icr.io/streaming/streamingspringbootwebflux"
+    ibm-cluster: "streaming"
+If you have this issue:
 
+    Executing kubectl get clusterrolebinding tiller -n kube-system
+    
+    
+    FAILED
+    Executing kubectl create clusterrolebinding tiller --clusterrole=cluster-admin 
+    Failed to execute the action:  exit status 1: Error from server (NotFound): 
+    --serviceaccount=kube-system:default -n kube-system
+    
+    clusterrolebindings.rbac.authorization.k8s.io "tiller" not found
+    
+    
+    FAILED
+    The 'kubectl get clusterrolebinding tiller -n kube-system' command failed to 
+    complete due to: exit status 1
+    
+    clusterrolebinding.rbac.authorization.k8s.io "tiller" created
+That's because it needs helm to install the helm chart into kubernetes, and you should install tiller into your kubernetes cluster
 
+    kubectl create serviceaccount tiller -n kube-system
+    
+    kubectl create clusterrolebinding tiller --clusterrole=cluster-admin --serviceaccount=kube-system:tiller -n kube-system
 
-<a name="enablement"></a>
-### IBM Cloud Enablement
+[For more details](https://cloud.ibm.com/docs/containers?topic=containers-helm)
 
-<a name="requirements"></a>
-### Requirements
-#### Local Development Tools Setup (optional)
-
-
-#### IBM Cloud development tools setup (optional)
-
-1. Install [IBM Cloud Developer Tools](https://console.bluemix.net/docs/cli/idt/setting_up_idt.html#add-cli) on your machine  
-2. Install the plugin with: `bx plugin install dev -r bluemix`
-
-
-#### IBM Cloud DevOps setup (optional)
-
-[![Create Toolchain](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/)
-
-[IBM Cloud DevOps](https://www.ibm.com/cloud-computing/bluemix/devops) services provides toolchains as a set of tool integrations that support development, deployment, and operations tasks inside IBM Cloud. The "Create Toolchain" button creates a DevOps toolchain and acts as a single-click deploy to IBM Cloud including provisioning all required services. 
-
-***Note** you must publish your project to [Github](https://github.com/) for this to work.
-
-
-
-<a name="configuration"></a>
-### Configuration
-
-
-
-<a name="run"></a>
-### Run
-#### Using IBM Cloud development CLI
-The IBM Cloud development plugin makes it easy to compile and run your application if you do not have all of the tools installed on your computer yet. Your application will be compiled with Docker containers. To compile and run your app, run:
-
-```bash
-bx dev build
-bx dev run
-```
-
-
-#### Using your local development environment
-
-
-
-##### Endpoints
-
-
-
-<a name="debug"></a>
-### Debug
-
-#### Using IBM Cloud development CLI
-To build and debug your app, run:
-```bash
-bx dev build --debug
-bx dev debug
-```
-
+## Customize your own dockerfile or helm chart
+The auto generated config is good, but now always adapt to our business needs, so sometimes or even at most time we need define our custom dockerfile & helm chart
+    
