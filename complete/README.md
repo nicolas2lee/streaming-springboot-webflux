@@ -48,3 +48,6 @@ That's because it needs helm to install the helm chart into kubernetes, and you 
 ## Customize your own dockerfile or helm chart
 The auto generated config is good, but now always adapt to our business needs, so sometimes or even at most time we need define our custom dockerfile & helm chart
     
+    https://cloud.ibm.com/docs/containers?topic=containers-app
+    
+    https://stackoverflow.com/questions/47632581/dynamically-set-the-config-map-name-and-values-to-read-in-helm/47639357#47639357

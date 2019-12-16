@@ -1,16 +1,15 @@
-FROM ibmjava:8-sdk AS builder
-LABEL maintainer="IBM Java Engineering at IBM Cloud"
+FROM maven:3.6-jdk-8-alpine AS builder
 
 WORKDIR /app
-COPY . /app
-
-RUN apt-get update && apt-get install -y maven
-RUN mvn -N io.takari:maven:wrapper -Dmaven=3.5.0
-RUN ./mvnw install
+COPY pom.xml .
+RUN mvn -e -B dependency:resolve
+COPY src ./src
+RUN mvn -e -B package
 
 FROM ibmjava:8-sfj
 LABEL maintainer="IBM Java Engineering at IBM Cloud"
 
+FROM openjdk:8-jre-alpine
 COPY --from=builder /app/target/streaming-springboot-webflux-0.1.0.jar /app.jar
 
 ENV JAVA_OPTS=""

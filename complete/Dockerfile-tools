@@ -1,7 +1,5 @@
 FROM ibmjava:8-sdk
 
-LABEL maintainer="IBM Java Engineering at IBM Cloud"
-
 RUN apt-get update && apt-get install -y maven
 
 ARG bx_dev_user=root
