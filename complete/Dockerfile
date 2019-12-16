@@ -6,9 +6,6 @@ RUN mvn -e -B dependency:resolve
 COPY src ./src
 RUN mvn -e -B package
 
-FROM ibmjava:8-sfj
-LABEL maintainer="IBM Java Engineering at IBM Cloud"
-
 FROM openjdk:8-jre-alpine
 COPY --from=builder /app/target/streaming-springboot-webflux-0.1.0.jar /app.jar
 
