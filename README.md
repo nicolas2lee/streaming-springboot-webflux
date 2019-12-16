@@ -15,7 +15,7 @@ Original tech stack:
 * Docker, Dockerfile
     * [Official docker doc](https://www.docker.com/)
     * [Docker course in ibm](https://cognitiveclass.ai/courses/docker-essentials)
-    * [Docker best practices](https://docs.docker.com/develop/develop-images/multistage-build/)
+    * [Docker best practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
 * Kubernetes
     * [Official kubernetes doc](https://kubernetes.io/)
     * [Kubernetes course in ibm](https://cognitiveclass.ai/courses/kubernetes-course)
